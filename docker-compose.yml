@@ -5,7 +5,7 @@ services:
     container_name: coffeekraken-github-link-proxy
     command: bash -c "./start.sh"
     environment:
-      VIRTUAL_HOST: github-link-proxy.coffeekraken.io,dev.github-link-proxy.coffeekraken.io
+      VIRTUAL_HOST: github.coffeekraken.io,dev.github.coffeekraken.io
       VIRTUAL_PORT: 8181
     ports:
      - "8181:8181"

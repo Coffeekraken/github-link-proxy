@@ -1,0 +1,18 @@
+version: '2'
+services:
+  components-demos:
+    build: .
+    container_name: coffeekraken-github-link-proxy
+    command: bash -c "./start.sh"
+    environment:
+      VIRTUAL_HOST: github-link-proxy.coffeekraken.io,dev.github-link-proxy.coffeekraken.io
+      VIRTUAL_PORT: 8181
+    ports:
+     - "8181:8181"
+    volumes:
+     - .:/code
+     - ~/.ssh:/root/.ssh
+networks:
+  default:
+    external:
+      name: coffeekraken-github-link-proxy-network

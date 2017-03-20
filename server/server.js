@@ -74,9 +74,6 @@ module.exports = function(config) {
 			const versions = window.document.querySelectorAll('[data-tab-filter="tags"] [data-name]');
 			[].forEach.call(versions, (version, index) => {
 				let v = version.getAttribute('data-name').toString();
-				if (v.substr(0,1) === 'v') {
-					v = v.substr(1);
-				}
 				versionsArray.push(v);
 			});
 			// reverse array
@@ -84,9 +81,10 @@ module.exports = function(config) {
 			// loop on each versiosn to check if it satisfie the wanted one
 			let satisfiedVersion = null;
 			for(let i=0; i<versionsArray.length; i++) {
-				if (__semver.valid(versionsArray[i]) && __semver.satisfies(versionsArray[i], version)) {
+				let versionToCheck = versionsArray[i];
+				if (__semver.valid(versionToCheck) && __semver.satisfies(versionToCheck, version)) {
 					// stop here cause this is not satisfiing the version we want
-					satisfiedVersion = versionsArray[i];
+					satisfiedVersion = versionToCheck;
 				}
 			}
 
